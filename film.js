@@ -123,9 +123,28 @@ if (document.querySelector('#detail-filmu')) {
 			width="663"
 			height="909"
 		/>`
-	      }
-      }
-   )
+
+		
+		let datePremiere = film.premiera
+		let daysFromPremiere = dayjs(datePremiere).diff(dayjs(), 'days')
+		premiereElement.innerHTML = `Premiéra <strong>${dayjs(datePremiere).format('D.M.YYYY')}</strong>`
+		if (daysFromPremiere < 0) {
+			if (daysFromPremiere == -1) {
+				premiereElement.innerHTML += `, což bylo před ${String(daysFromPremiere).slice(1)} dnem.`
+			} else if (daysFromPremiere < -1) {
+				premiereElement.innerHTML += `, což bylo před ${String(daysFromPremiere).slice(1)} dny.`
+			}
+		} else if (daysFromPremiere >= 0) {
+			if (daysFromPremiere == 0) {
+				premiereElement.innerHTML += `, což je dnes.`
+			} else if (daysFromPremiere == 1) {
+				premiereElement.innerHTML += `, což bude za ${String(daysFromPremiere)} den.`
+			} else if ((daysFromPremiere >= 2 && daysFromPremiere <= 4)) {
+				premiereElement.innerHTML += `, což bude za ${String(daysFromPremiere)} dny.`
+			} else if (daysFromPremiere > 4) {
+				premiereElement.innerHTML += `, což bude za ${String(daysFromPremiere)} dnů.`
+			}
+		}
+	}
+})
 };
-
-
