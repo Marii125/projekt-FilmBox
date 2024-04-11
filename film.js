@@ -104,3 +104,28 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+
+const filmDetail = document.querySelector('#detail-filmu')
+const filmName = document.querySelector('.card-title')
+const filmDescription = document.querySelector('.card-text')
+const filmPoster = document.querySelector('.col-md-5')
+const premiereElement = document.querySelector('#premiera')
+if (document.querySelector('#detail-filmu')) {
+	let filmId = location.hash.slice(1)
+	filmy.forEach((film) => {
+		if (filmId === film.id) {
+			filmName.textContent = `${film.nazev}`
+			filmDescription.textContent = `${film.popis}`
+			filmPoster.innerHTML = `<img
+			src="${film.plakat.url}"
+			alt="plakát"
+			class="img-fluid rounded-start"
+			width="663"
+			height="909"
+		/>`
+	      }
+      }
+   )
+};
+
+
